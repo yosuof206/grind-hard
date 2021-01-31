@@ -31,8 +31,7 @@ function coffeeTemplate(coffee){
 }
  
 switch(myDay){
-
-
+ 
     case 1:
         today = "Monday";
  
@@ -75,9 +74,7 @@ switch(myDay){
         };
  
     break;
-
-
-
+ 
     case 4:
         today = "Thursday";
  
@@ -153,5 +150,3 @@ document.getElementById("coffee-output").innerHTML = coffeeTemplate(coffee);
 document.getElementsByTagName("HTML")[0].style.backgroundColor = coffee.color;
  
 document.getElementById("coffee-highlight").style.color = coffee.color;
- 
- 
