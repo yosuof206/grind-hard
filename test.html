@@ -1,219 +1,71 @@
-test.html file <html>
-
+<html>
     <head>
-
-        <title>
-                Test page for daily grind
-        </title>
-
-
-
-
+        <title>Test for Daily grind</title>
+ 
+ 
+ 
+        <link id="mainStylesheet" rel="stylesheet" href="css/default.css" />
         <style type="text/css">
-
-            html {background-color:#FF7518;/* pumpkin - overwrites default /}
-
-            .feature {color:#FF7518; / daily feature color - pumpkin! /}
-
+        
+            html {background-color:#FF7518;/* pumpkin - overwrites default */}
+            
+            .feature {color:#FF7518; /* daily feature color - pumpkin! */}
+            
             .masthead{
-                font-family: 'Holtwood One SC', serif; / required for google font /
+                font-family: 'Holtwood One SC', serif; /* required for google font */
                 font-size:3em;
             }
-
+        
             #logo{
                 float:right;
                 display:inline-block;
                 padding:2px;
-                max-width:100px; / actual size of image /
-                width:20%; / approximate size taken on screen in maximum view /
+                max-width:100px; /* actual size of image */
+                width:20%; /* approximate size taken on screen in maximum view */
             }
-
+        
             #coffee {
                 float:left;
                 display:inline-block;
                 padding:20px;
-                max-width:300px; / best if actual size of image /
-                width:33%; / approximate size taken on screen in maximum view /
+                max-width:300px; /* best if actual size of image */
+                width:33%; /* approximate size taken on screen in maximum view */
             }
-
+    
             h3.slogan{
-               font-style:italic; / make the slogan italics */ 
+               font-style:italic; /* make the slogan italics */ 
             }
         </style>
+ 
+ 
+ 
+</head>
+<body>
+        <h1>Test for Daily grind</h1>
+ 
+ 
+        <div id="coffee-output">Coffee will go here!</div>
+        <h3>Coffee Specials for Every Day of the Week</h3>
+        <p><a href="?day=0">Sunday</a></p>
+        <p><a href="?day=1">Monday</a></p>
+        <p><a href="?day=2">Tuesday</a></p>
+        <p><a href="?day=3">Wednesday</a></p>
+        <p><a href="?day=4">Thursday</a></p>
+        <p><a href="?day=5">Friday</a></p>
+        <p><a href="?day=6">Saturday</a></p>
+ 
+ 
+ 
+        <script src="js/daily-grind.js" defer></script>
+ 
+ 
+</body>
+</html>
 
 
-
-
-
-
-
-
-
-
-    </head>
-
-    <body>
   
 
 
 
 
-            <h1>Coffee Specials for Each Day of the Week</h1>
-            <p><a href="?day=0">Sunday</a></p>
-            <p><a href="?day=1">Monday</a></p>
-            <p><a href="?day=2">Tuesday</a></p>
-            <p><a href="?day=3">Wednesday</a></p>
-            <p><a href="?day=4">Friday</a></p>
-            <p><a href="?day=5">Saturday</a></p>
-
-
-
-         <span id="coffee-output">Coffee goes here</span>
-
-
-
-
-          <script src="js/daily-grind.js"></script>
-
-
-
-    </body>
-
-
-</html>
-let myDate = new Date();
-let myDay = myDate.getDay();
-let today = ""; 
-let coffee = "";
-
-const queryString = window.location.search;
-const urlParams = new URLSearchParams(queryString);
-
-
-if(urlParams.has('day')) {
-    myDay = urlParams.get('day');
-}
-else {
-    myDay = myDate.getDay();
-}
-
-myDay = parseInt(myDay);
-
-function coffeeTemplate(coffee){
-    let myReturn = ""; 
-
-    myReturn += `
-    <p>
-    <img src="${coffee.pic}" alt="${coffee.alt}" id="coffee"/>
-    <strong class="feature">${coffee.day}'s Coffee Special:</strong><br> ${coffee.day}'s daily coffee special is <strong class="feature">${coffee.name}</strong>${coffee.desc}
-</p> `;
-    
-    return myReturn;
-
-}
-
-
-
-
-
-
-switch (myDay) {
-
-    case 0:
-        today = "Sunday";
-        coffee = { color:"Purple",
-            name:"Brew",
-            pic:"images/cold-brew.jpg",
-            alt: "A picture of cold brew",
-            day:"Sunday",
-            desc:`purple `
-    
-        };
-    break;
-
-
-
-    case 1:
-    today = "Monday";
-    coffee = { 
-        color: "pink",
-        name:"Bubble Tea",
-        pic:"images/bubble-tea.jpg",
-        alt: "A picture of a Drip coffee",
-        day:"Wednesday",
-        desc:`brown`
-
-    };
-break;
-
-    case 2:
-        today = "Tuesday";
-        coffee = {
-            color: "brown",
-            name:"Drip",
-            pic:"images/drip.jpg",
-            alt: "A picture of a Drip coffee",
-            day:"Wednesday",
-            desc:`brown`
-
-        };
-    break;
-
-
-    case 3:
-        today = "Wednesday";
-        coffee = { 
-            color:"Yellow",
-            name:"Caramel",
-            pic:"images/caramel-latte.jpg",
-            alt: "A picture of a caramel latte",
-            day:"Wednesday",
-            desc:`yellow`
-    
-        };
-    break;
-
-    case 4:
-    today = "Thursday";
-    coffee = { color:"Orange",
-        name:"Pumpkin",
-        pic:"images/pumpkin-spice-latte.jpg",
-        alt: "A picture of pumpkin spice latte",
-        day:"Thursday",
-        desc:`orange `
-
-    };
-break;
-
-        case 5:
-            today = "Friday";
-            coffee = { color:"Tan",
-                name:"Mocha",
-                pic:"images/mocha.jpg",
-                alt: "A picture of a mocha",
-                day:"Friday",
-                desc:`tan`
-
-            };
-        break;
-
-
-        case 6:
-    today = "Saturday";
-    coffee = { color:"Green",
-        name:"Bucks",
-        pic:"images/frappacino.jpg",
-        alt: "A picture of a frappacino",
-        day:"Saturday",
-        desc:`green `
-
-    };
-break;
-
-}
-console.log(coffee);
-document.getElementById("coffee-output").innerHTML = coffeeTemplate(coffee);
-document.getElementsByClassName("feature")[0].style.color = coffee.color;
-document.getElementsByClassName("feature")[1].style.color = coffee.color;
-document.body.style.backgroundColor = coffee.color;
-//alert(today); 
+            
